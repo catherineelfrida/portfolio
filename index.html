@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rossario Catherine Elfrida — Portfolio</title>
+  <meta name="description" content="Portfolio of Rossario Catherine Elfrida — Backend • DevOps • Cloud Computing" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <style>
+    /* Base reset */
+    :root {
+      --bg1: #0e1726;      /* deep navy */
+      --bg2: #111b2e;      /* dark slate */
+      --accent: #50c9c3;   /* teal */
+      --accent2: #4a90e2;  /* blue */
+      --muted: #9aa4b2;    /* gray */
+      --card: rgba(255,255,255,.06);
+      --border: rgba(255,255,255,.12);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; scroll-behavior: smooth; }
+    body {
+      margin: 0; font-family: 'Poppins', sans-serif; color: #e8eef7;
+      background: radial-gradient(1200px 800px at 10% -10%, #1b2a49 0%, transparent 50%),
+                  radial-gradient(1000px 600px at 110% 10%, #15233d 0%, transparent 45%),
+                  linear-gradient(180deg, var(--bg1), var(--bg2));
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1100px, 92%); margin: 0 auto; }
+
+    /* Navbar */
+    .nav {
+      position: sticky; top: 0; z-index: 50; backdrop-filter: blur(14px);
+      background: rgba(14,23,38,.6); border-bottom: 1px solid var(--border);
+    }
+    .nav .wrap { display:flex; align-items:center; justify-content:space-between; padding:12px 0; }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.5px; }
+    .brand i { color: var(--accent); font-size: 1.4rem; }
+    .nav ul { display:flex; gap:18px; list-style:none; }
+    .nav a { color:#d8e3f0; opacity:.9; font-weight:500; }
+    .nav a:hover { color:#fff; }
+
+    /* Hero */
+    .hero { padding: 72px 0 36px; }
+    .hero .grid { display:grid; grid-template-columns: 1.2fr .8fr; gap:36px; align-items:center; }
+    .kicker { color: var(--accent); font-weight:600; letter-spacing:.3px; }
+    .title { font-size: clamp(28px, 5vw, 46px); margin:.35rem 0 .6rem; line-height:1.15; font-weight:700; }
+    .subtitle { color:#c8d2e1; max-width: 58ch; }
+    .cta { display:flex; gap:12px; margin-top:20px; flex-wrap: wrap; }
+    .btn { padding: 12px 16px; border-radius: 12px; border:1px solid var(--border); background: var(--card);
+           color:#fff; display:inline-flex; align-items:center; gap:8px; transition: .2s transform, .2s box-shadow; }
+    .btn:hover { transform: translateY(-2px); box-shadow:0 8px 20px rgba(0,0,0,.25); }
+    .btn.primary { background: linear-gradient(135deg, var(--accent2), var(--accent)); border: none; }
+    .stats { display:flex; gap:22px; margin-top:26px; flex-wrap:wrap; }
+    .pill { border:1px solid var(--border); background: var(--card); padding:10px 12px; border-radius: 999px; color:#cfd7e6; }
+    .mock { border-radius:18px; border:1px solid var(--border); background: var(--card); height: 280px; display:grid; place-items:center; }
+
+    /* Section */
+    section { padding: 36px 0; }
+    .section-title { font-size: 1.6rem; font-weight:700; margin-bottom: 12px; display:flex; align-items:center; gap:10px; }
+    .section-title i { color: var(--accent); }
+    .section-sub { color:#c8d2e1; margin-bottom: 18px; }
+
+    /* Cards grid */
+    .grid-3 { display:grid; gap:18px; grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 900px) { .hero .grid { grid-template-columns: 1fr; } .grid-3 { grid-template-columns: 1fr; } }
+
+    .card { border:1px solid var(--border); background: var(--card); border-radius: 16px; padding:18px; transition:.25s transform, .25s box-shadow; }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 14px 40px rgba(0,0,0,.25); }
+    .card h3 { margin: 8px 0 6px; font-size: 1.12rem; }
+    .card p { color:#cdd6e4; }
+    .tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+    .tag { padding:6px 10px; border-radius:999px; background:#0f1a2e; border:1px solid var(--border); color:#b9c5d7; font-size:.85rem; }
+    .links { display:flex; gap:10px; margin-top:12px; }
+
+    /* Timeline */
+    .timeline { position:relative; margin: 6px 0 0 8px; }
+    .timeline::before { content:""; position:absolute; left:8px; top:0; bottom:0; width:2px; background:var(--border); }
+    .item { position:relative; padding-left:30px; margin-bottom:18px; }
+    .dot { position:absolute; left:0; top:4px; width:14px; height:14px; border-radius:50%; border:2px solid var(--accent); background:#0e1726; }
+    .item h4 { margin:0 0 4px; }
+    .item small { color: var(--muted); }
+
+    /* Footer */
+    footer { padding: 32px 0 60px; color:#b5c0d4; border-top:1px solid var(--border); margin-top: 24px; }
+    .socials { display:flex; gap:12px; }
+    .chiprow { display:flex; gap:8px; flex-wrap:wrap; }
+    .chip { background: #0f1a2e; border:1px solid var(--border); color:#b9c5d7; padding:8px 10px; border-radius:10px; font-size:.9rem; }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="nav">
+    <div class="container wrap">
+      <a class="brand" href="#home"><i class='bx bx-code-curly'></i> Rossario Catherine</a>
+      <ul>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="home" class="hero">
+    <div class="container grid">
+      <div>
+        <div class="kicker">Backend • DevOps • Cloud</div>
+        <h1 class="title">Hi, I'm <span style="color:var(--accent)">Rossario Catherine Elfrida</span>.</h1>
+        <p class="subtitle">Engineer with strong foundation in backend development and cloud computing. Passionate about building scalable services and shipping real-world impact.</p>
+        <div class="cta">
+          <a class="btn primary" href="assets/Rossario_Catherine_Elfrida_Portfolio.pdf" target="_blank" rel="noopener">
+            <i class='bx bxs-download'></i> Download Portfolio (PDF)
+          </a>
+          <a class="btn" href="https://linkedin.com/in/rossariocatherine" target="_blank" rel="noopener"><i class='bx bxl-linkedin-square'></i> LinkedIn</a>
+          <a class="btn" href="https://github.com/catherineelfrida" target="_blank" rel="noopener"><i class='bx bxl-github'></i> GitHub</a>
+        </div>
+        <div class="stats">
+          <span class="pill"><i class='bx bx-git-branch'></i> 20+ repos</span>
+          <span class="pill"><i class='bx bx-rocket'></i> 4+ featured projects</span>
+          <span class="pill"><i class='bx bx-certification'></i> FGA • Bangkit • SINTA 5</span>
+        </div>
+      </div>
+      <div>
+        <div class="mock">
+          <div class="chiprow">
+            <span class="chip">Node.js</span>
+            <span class="chip">Golang</span>
+            <span class="chip">Express</span>
+            <span class="chip">PostgreSQL</span>
+            <span class="chip">GCP</span>
+            <span class="chip">Docker</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title"><i class='bx bxs-grid'></i> Featured Projects</h2>
+      <p class="section-sub">Case-study style cards inspired by EkiZR V5 layout. Each card highlights the problem, your role, tech stack, and outcomes.</p>
+
+      <div class="grid-3">
+        <!-- JimbWash -->
+        <article class="card">
+          <span class="pill">Final Year Project • 2023–2024</span>
+          <h3>JimbWash — Laundry Marketplace</h3>
+          <p>Responsive mobile-web connecting users to 10+ laundry providers in Jimbaran with location-based discovery and price comparison. Published in <b>SPEKTRUM (SINTA 5)</b>.</p>
+          <div class="tags">
+            <span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Prisma</span><span class="tag">MySQL</span>
+          </div>
+          <div class="links">
+            <a class="btn" href="https://github.com/catherineelfrida/marketplace-laundry-be" target="_blank" rel="noopener"><i class='bx bxl-github'></i> Code</a>
+          </div>
+        </article>
+
+        <!-- AQIMonitor -->
+        <article class="card">
+          <span class="pill">Capstone • 2022</span>
+          <h3>AQIMonitor — Air Quality & Weather Alerts</h3>
+          <p>Android app with Node.js backend for AQI and weather warnings. Top 2 of 17+ teams (Indosat Ooredoo Hutchison initiative).</p>
+          <div class="tags">
+            <span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Scraping</span>
+          </div>
+          <div class="links">
+            <a class="btn" href="https://github.com/catherineelfrida/company-capstone" target="_blank" rel="noopener"><i class='bx bxl-github'></i> Code</a>
+          </div>
+        </article>
+
+        <!-- MyGram API -->
+        <article class="card">
+          <span class="pill">Bootcamp • 2024</span>
+          <h3>MyGram API — Scalable Photo-sharing API</h3>
+          <p>Secure REST API with auth, middleware, and unit tests; built with Go and PostgreSQL following microservice-ready patterns.</p>
+          <div class="tags">
+            <span class="tag">Golang</span><span class="tag">GORM</span><span class="tag">PostgreSQL</span>
+          </div>
+          <div class="links">
+            <a class="btn" href="https://github.com/catherineelfrida/mygram-api" target="_blank" rel="noopener"><i class='bx bxl-github'></i> Code</a>
+          </div>
+        </article>
+
+        <!-- Basic Banking System -->
+        <article class="card">
+          <span class="pill">Bootcamp • 2023</span>
+          <h3>Basic Banking System — Transactions API</h3>
+          <p>Backend system with authentication, transfers, and testing. Deployed & documented with focus on correctness and resilience.</p>
+          <div class="tags">
+            <span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Prisma</span><span class="tag">PostgreSQL</span>
+          </div>
+          <div class="links">
+            <a class="btn" href="https://github.com/catherineelfrida/Basic-Banking-System" target="_blank" rel="noopener"><i class='bx bxl-github'></i> Code</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container">
+      <h2 class="section-title"><i class='bx bxs-briefcase'></i> Experience</h2>
+      <div class="card">
+        <div class="timeline">
+          <div class="item">
+            <span class="dot"></span>
+            <h4>DevOps Engineer Intern — PT XL Axiata Tbk</h4>
+            <small>Aug 2022 – Dec 2022</small>
+            <p>Provisioned 10+ cloud infrastructures with IaC; automated deployments for 4 projects via CI/CD; supported migration of 10+ on‑prem systems to cloud; cost analysis across 100+ cloud projects.</p>
+          </div>
+          <div class="item">
+            <span class="dot"></span>
+            <h4>Software Engineer Apprentice — Fishku Indonesia</h4>
+            <small>Jun 2022 – Apr 2023</small>
+            <p>Bangkit standout project awarded <b>$10K</b> (Google x Kemendikbud). Built backends with full GCP integration (Cloud Run, Cloud SQL, Secret Manager). 30% faster response times; 20% DB optimization.</p>
+          </div>
+          <div class="item">
+            <span class="dot"></span>
+            <h4>Cloud Computing Participant — Bangkit Academy</h4>
+            <small>Feb 2022 – Jul 2022</small>
+            <p>Mastered web dev & GCP fundamentals; 26 Google Cloud Skill Boost badges; collaborated on ML + cloud capstone.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <h2 class="section-title"><i class='bx bx-bulb'></i> Skills</h2>
+      <div class="card">
+        <div class="chiprow">
+          <span class="chip">JavaScript</span><span class="chip">Golang</span><span class="chip">Java</span><span class="chip">C++</span><span class="chip">C#</span>
+          <span class="chip">Node.js</span><span class="chip">Express.js</span><span class="chip">Hapi</span><span class="chip">Prisma ORM</span>
+          <span class="chip">PostgreSQL</span><span class="chip">MySQL</span>
+          <span class="chip">GCP</span><span class="chip">AWS</span>
+          <span class="chip">Docker</span><span class="chip">Jenkins</span><span class="chip">GitLab CI/CD</span><span class="chip">Ansible</span>
+          <span class="chip">Grafana</span><span class="chip">Linux</span><span class="chip">Git</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="container">
+      <h2 class="section-title"><i class='bx bxs-graduation'></i> Education & Certifications</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Udayana University — B.Eng, Electrical (Computer)</h3>
+          <p>Aug 2019 – Aug 2024 • GPA 3.80/4.00 • Honors (Sangat Memuaskan)</p>
+        </div>
+        <div class="card">
+          <h3>FGA 2023 — Cloud Automation with Ansible</h3>
+          <p>RH294: Inventory, playbooks, variables & facts, roles/collections, troubleshooting, Linux automation.</p>
+        </div>
+        <div class="card">
+          <h3>FGA 2023 — Backend Engineering</h3>
+          <p>Node.js, Express.js, Prisma, PostgreSQL, testing, security & authentication, WebSocket, mailer, deployment.</p>
+        </div>
+        <div class="card">
+          <h3>FGA 2024 — Scalable Web Service with Golang</h3>
+          <p>Go fundamentals, concurrency, middleware, unit testing (Testify), SQL & NoSQL integration.</p>
+        </div>
+        <div class="card">
+          <h3>Bangkit Academy 2022 — Cloud Computing</h3>
+          <p>Web dev & GCP fundamentals; 26 Google Cloud badges; ML + Cloud capstone.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title"><i class='bx bxs-envelope'></i> Contact</h2>
+      <div class="card">
+        <p>Email: <a href="mailto:roselfridaa@gmail.com">roselfridaa@gmail.com</a></p>
+        <p>Location: Bekasi, Jawa Barat</p>
+        <div class="links">
+          <a class="btn" href="https://linkedin.com/in/rossariocatherine" target="_blank" rel="noopener"><i class='bx bxl-linkedin-square'></i> LinkedIn</a>
+          <a class="btn" href="https://github.com/catherineelfrida" target="_blank" rel="noopener"><i class='bx bxl-github'></i> GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
+      <small>© <span id="year"></span> Rossario Catherine Elfrida</small>
+      <div class="socials">
+        <a href="https://linkedin.com/in/rossariocatherine" target="_blank" aria-label="LinkedIn"><i class='bx bxl-linkedin-square'></i></a>
+        <a href="https://github.com/catherineelfrida" target="_blank" aria-label="GitHub"><i class='bx bxl-github'></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
